@@ -200,4 +200,26 @@ public class CarroDAO extends BaseDAO {
 		}
 		return 0L;
 	}
+
+	public boolean delete(Long id) throws SQLException {
+		Connection conn = null;
+		PreparedStatement stmt = null;
+
+		try {
+			conn = getConnection();
+			stmt = conn.prepareStatement("delete from carro where id = ?");
+			stmt.setLong(1, id);
+			int count = stmt.executeUpdate();
+			boolean ok = count > 0;
+			return ok;
+		} finally {
+			if (conn != null) {
+				conn.close();
+			}
+
+			if (stmt != null) {
+				stmt.close();
+			}
+		}
+	}
 }

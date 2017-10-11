@@ -50,4 +50,12 @@ public class CarroService {
 			return null;
 		}
 	}
+	
+	public boolean delete(Long id) {
+		try {
+			return db.delete(id);
+		} catch (SQLException e) {
+			return false;
+		}
+	}
 }
